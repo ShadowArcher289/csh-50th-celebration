@@ -1,20 +1,38 @@
-# Use official Node.js base image
-FROM node:22
+# --- Build Stage ---
+FROM node:22-alpine AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files first (better caching)
+# Install dependencies first (take advantage of Docker caching)
 COPY package*.json ./
-
-# Install dependencies (including Vite if it's in package.json)
 RUN npm install
 
-# Copy the rest of your app
+# Copy source
 COPY . .
 
-# Expose the Vite dev server port
-EXPOSE 5173
+# Build TypeScript → JavaScript
+RUN npm run build
 
-# Default command (e.g., run development server)
-CMD ["npm", "run", "dev"]
+
+# --- Runtime Stage ---
+FROM node:22-alpine
+
+WORKDIR /app
+
+# Copy package files & install ONLY production deps
+COPY package*.json ./
+RUN npm install --production
+
+# Copy built JS from builder stage
+COPY --from=builder /app/dist ./dist
+
+# Non-root user (required for OKD)
+USER node
+
+# Expose application port
+EXPOSE 3000
+# ⚠ Change if your app uses a different port
+
+# Run the compiled JS output
+CMD ["node", "dist/index.js"]
