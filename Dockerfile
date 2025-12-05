@@ -11,28 +11,38 @@ RUN npm install
 # Copy source
 COPY . .
 
-# Build TypeScript → JavaScript
+# Build the Vite app (produces static files in dist/)
 RUN npm run build
 
 
 # --- Runtime Stage ---
-FROM node:22-alpine
+FROM nginx:alpine
 
-WORKDIR /app
+# Copy built static files from builder stage
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copy package files & install ONLY production deps
-COPY package*.json ./
-RUN npm install --production
-
-# Copy built JS from builder stage
-COPY --from=builder /app/dist ./dist
+# Create nginx configuration for SPA routing
+RUN echo 'server { \
+    listen 8080; \
+    root /usr/share/nginx/html; \
+    index index.html; \
+    location / { \
+        try_files $uri $uri/ /index.html; \
+    } \
+}' > /etc/nginx/conf.d/default.conf
 
 # Non-root user (required for OKD)
-USER node
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
+    chown -R nginx:nginx /var/cache/nginx && \
+    chown -R nginx:nginx /var/log/nginx && \
+    chown -R nginx:nginx /etc/nginx/conf.d && \
+    touch /var/run/nginx.pid && \
+    chown -R nginx:nginx /var/run/nginx.pid
+
+USER nginx
 
 # Expose application port
-EXPOSE 3000
-# ⚠ Change if your app uses a different port
+EXPOSE 8080
 
-# Run the compiled JS output
-CMD ["node", "dist/index.js"]
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
