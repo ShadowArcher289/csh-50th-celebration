@@ -13,6 +13,10 @@ interface ScheduleEvent {
   type: "social" | "main" | "food" | "activity";
 }
 
+/**
+ * The time frame for events for the day in hours. 
+ * (id) is only used for keys and does not matter the order, just don't repeat them.
+ */
 const times = [
     { id: 1, hour: '05', timeOfDay: "am"},
     { id: 2, hour: '06', timeOfDay: "am"},
@@ -146,7 +150,7 @@ const typeColors: Record<string, string> = {
 const baseHour = 5; // the first viable hour (currently 5am)
 /**
  *  // calculate the row index an event should start at given its start time (in military time)
- * @param hhmm (In military time. Ex: 18:00 == 06:00pm)
+ * @param time accepts the following input format: "11:00 AM - 1:00 PM"
  * @returns index of the row
  */
 function timeToRowStart(time: string): number {
@@ -171,12 +175,11 @@ function timeToRowStart(time: string): number {
 
 /**
  * Duration in rows based on 15-minute slots.
- * @param start time given in military time (13:00)
- * @param end time given in military time (18:00)
+ * @param time accepts the following input format: "11:00 AM - 1:00 PM"
  * @returns the number of rows that the given time frame spans 
  */
 function durationToRowSpan(time: string): number {
-
+  
   const [startWithTimeOfDay, endWithTimeOfDay] = time.split(" - ");
 
   var start = startWithTimeOfDay.split(" "); // process the time into something usable by the function
@@ -287,12 +290,12 @@ const Schedule = () => {
                 </div>
               ))}
 
-              {/* Display the events on the right of the timeline*/}
+              {/* Display events on the right of timeline */}
               {scheduleData[selectedDay].map((event, index) => (
                 <div
                   key={index}
                   className={cn(
-                    "col-start-2 col-span-3 row-span-4 overflow-y-auto border-4 border-csh-magenta p-12 rounded-2xl transition-all duration-300 hover:scale-[1.02] bg-pink-300",
+                    "col-start-2 col-span-full row-span-1 overflow-y-auto border-4 border-csh-magenta p-12 rounded-2xl transition-all duration-300 hover:scale-[1.02] bg-pink-300",
                     event.type === "main" && "border-2 border-primary/50 glow-csh"
                   )}
                   style={{
