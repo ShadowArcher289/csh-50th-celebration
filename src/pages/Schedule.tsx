@@ -13,6 +13,7 @@ interface ScheduleEvent {
   type: "social" | "main" | "food" | "activity";
 }
 
+//----- Constants & Arrays for Event Data-----//
 /**
  * The time frame for events for the day in hours. 
  * (id) is only used for keys and does not matter the order, just don't repeat them.
@@ -40,6 +41,9 @@ const times = [
     { id: 20, hour: '12', timeOfDay: "pm"},
   ]
 
+/**
+ * Holds the data for events shown on the Schedule Page
+ */
 // PLACEHOLDER: Update all event times, descriptions, and locations as they are finalized
 const scheduleData: Record<Day, ScheduleEvent[]> = {
   friday: [
@@ -147,12 +151,13 @@ const typeColors: Record<string, string> = {
   activity: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
 };
 
-const baseHour = 5; // the first viable hour (currently 5am)
+//----- Helper Functions -----//
 /**
  *  // calculate the row index an event should start at given its start time (in military time)
  * @param time accepts the following input format: "11:00 AM - 1:00 PM"
  * @returns index of the row
  */
+const baseHour = 5; // the first viable hour (currently 5am)
 function timeToRowStart(time: string): number {
 
   const startWithTimeOfDay = time.split(" - ")[0];
@@ -204,6 +209,7 @@ function durationToRowSpan(time: string): number {
 }
 
 
+//----- Webpage HTML -----//
 const Schedule = () => {
   const [selectedDay, setSelectedDay] = useState<Day>("friday");
 
@@ -279,13 +285,13 @@ const Schedule = () => {
                       {time.hour} {time.timeOfDay} -
                     </div>
                     <div className={cn("row-span-1 border-b-2 border-dotted text-sm")}>
-                    -{time.hour}:15 -
+                    - {time.hour}:15 -
                     </div>
                     <div className={cn("row-span-1 border-b-2 border-dotted text-sm")}>
-                    -{time.hour}:30 -
+                    - {time.hour}:30 -
                     </div>
                     <div className={cn("row-span-1 border-b-2 border-dotted text-sm")}>
-                    -{time.hour}:45 -
+                    - {time.hour}:45 -
                     </div>
                 </div>
               ))}
