@@ -362,6 +362,6 @@ const Schedule = () => {
       </section> */}
     </Layout>
   );
-};
+}; 
 
 export default Schedule;
