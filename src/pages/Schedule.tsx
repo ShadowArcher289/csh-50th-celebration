@@ -145,10 +145,10 @@ const dayLabels: Record<Day, { name: string; date: string }> = {
 };
 
 const typeColors: Record<string, string> = {
-  social: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+  social: "bg-blue-500/70 text-blue-200 border-blue-500/30",
   main: "bg-gradient-csh text-primary-foreground",
-  food: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-  activity: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+  food: "bg-amber-500/70 text-amber-200 border-amber-500/30",
+  activity: "bg-emerald-500/70 text-emerald-200 border-emerald-500/30",
 };
 
 //----- Helper Functions -----//
@@ -334,7 +334,7 @@ const Schedule = () => {
                     {/* Content */}
                     <div className="flex-1">
                       {/* Time */}
-                      <div className="flex items-center gap-2 text-csh-magenta font-semibold">
+                      <div className="flex items-center gap-2 text-csh-magenta font-semibold py-2">
                         <Clock className="w-4 h-4" />
                         {event.time}
                       </div>
@@ -349,13 +349,13 @@ const Schedule = () => {
                           {event.type === "main" ? "Main Event" : event.type.charAt(0).toUpperCase() + event.type.slice(1)}
                         </span>
                       </div>
-                      {/* <p className="text-muted-foreground mb-3">
+                      <p className="text-csh-foreground mb-3 text-csh-magenta">
                         {event.description}
                       </p>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-2 text-sm text-csh-magenta font-semibold">
                         <MapPin className="w-4 h-4" />
                         {event.location}
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                 </div>
