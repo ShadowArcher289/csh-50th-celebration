@@ -357,6 +357,7 @@ const Schedule = () => {
                     "border-8 border-primary/50"
                   )}>
           <div className="max-w-8xl mx-auto">
+
             {/* Day Header */}
             <div className="text-center mb-12">
               <h2 className="text-3xl font-display font-bold">
@@ -369,7 +370,7 @@ const Schedule = () => {
 
             {/* Events */} {/* Adding grid rows*/}
             <div className={cn(
-                    "grid grid-rows-[repeat(76, minmax(0, 1fr))] grid-cols-4 grid-flow-row-dense glass rounded-2xl p-6 transition-all duration-300",
+                    "grid grid-rows-[repeat(76, minmax(0, 1rem))] grid-cols-4 grid-flow-row-dense glass rounded-2xl p-6 transition-all duration-300",
                     "border-2 border-primary/50"
                   )}
             >
@@ -393,7 +394,7 @@ const Schedule = () => {
 
               {/* Fill in empty spaces */}
               {Array.from({ length: getEmptySpacesCount() }, (_, index) => (
-                <div key={index} className={cn("col-span-1 row-span-1 border-b-2 border-dotted p-6 text-center text-sm",
+                <div key={index} className={cn("col-span-1 row-span-1 border-b-2 border-dotted text-center text-sm",
                   (index % 12 == 0) && "border-t-4 border-solid",
                   ((index - 1) % 12 == 0) && "border-t-4 border-solid",
                   ((index - 2) % 12 == 0) && "border-t-4 border-solid",
