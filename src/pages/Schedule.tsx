@@ -375,8 +375,8 @@ const Schedule = () => {
                   )}
             >
               {/* Create Timeline on the left */}
-              {times.map(time => (
-                <>
+              {times.map(time => ( // source of Warning:(react_jsx-dev-runtime.js?v=7f273f88:64 Warning: Each child in a list should have a unique "key" prop.), because of <></>
+                <> 
                     <div className={cn("col-start-1 col-span-1 row-span-1 border-b-2 border-t-4 border-solid pr-6 sm:text-sm md:text-xl")}>
                       {time.hour} {time.timeOfDay} -
                     </div>
