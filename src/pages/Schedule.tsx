@@ -1,17 +1,11 @@
 import { Layout } from "@/components/Layout";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Clock, Grid, Grid2X2, MapPin, Users } from "lucide-react";
+import { Clock, MapPin } from "lucide-react";
+import { ScheduleEvent } from "./ScheduleEvent";
+import EventPopup from "./EventPopup";
 
 type Day = "friday" | "saturday" | "sunday";
-
-interface ScheduleEvent {
-  time: string;
-  title: string;
-  description: string;
-  location: string;
-  type: "social" | "main" | "food" | "activity";
-}
 
 //----- Constants & Arrays for Event Data-----//
 /**
@@ -305,11 +299,22 @@ function setSpacerRow(index: number): number {
   }
 }
 
-
 //----- Webpage HTML -----//
 const Schedule = () => {
   const [selectedDay, setSelectedDay] = useState<Day>("friday");
+  const [openEvent, setOpenEvent] = useState<ScheduleEvent | null>(null);
+
   resetSectionCount(); // reset the section count on the page reloading
+
+  /**
+   * Given an event, returns an EventPopup element
+   * @param event an event
+   * @returns EventPopup
+   */
+  function openEventPopup(event: ScheduleEvent) {
+    console.log("I WAS RAN")
+    setOpenEvent(event);
+  }
 
   return (
     <Layout>
@@ -422,40 +427,56 @@ const Schedule = () => {
                     gridColumnStart: nextColumn(),
                   }}
                 >
-                  <div className="flex flex-row items-start gap-4">
-                    {/* Content */}
-                    <div className="flex-1">
-                      {/* Time */}
-                      <div className="flex items-center gap-2 text-csh-magenta font-semibold py-2">
-                        <Clock className="w-4 h-4" />
-                        {event.time}
-                      </div>
-                      <div className="flex flex-wrap items-center gap-3 mb-2">
-                        <h3 className="text-xl font-display font-semibold">
-                          {event.title}
-                        </h3>
-                        <span className={cn(
-                          "px-3 py-1 rounded-full text-xs font-medium border",
-                          typeColors[event.type]
-                        )}>
-                          {event.type === "main" ? "Main Event" : event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-                        </span>
-                      </div>
-                      <p className="text-csh-foreground mb-3 text-csh-magenta">
-                        {event.description}
-                      </p>
-                      <div className="flex items-center gap-2 text-sm text-csh-magenta font-semibold">
-                        <MapPin className="w-4 h-4" />
-                        {event.location}
+                  <button
+                    onClick={() => {openEventPopup(event)}}
+                  >
+                    <div className="flex flex-row items-start gap-4">
+                      {/* Content */}
+                      <div className="flex-1">
+                        {/* Time */}
+                        <div className="flex items-center gap-2 text-csh-magenta font-semibold py-2">
+                          <Clock className="w-4 h-4" />
+                          {event.time}
+                        </div>
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                          <h3 className="text-xl font-display font-semibold">
+                            {event.title}
+                          </h3>
+                          <span className={cn(
+                            "px-3 py-1 rounded-full text-xs font-medium border",
+                            typeColors[event.type]
+                          )}>
+                            {event.type === "main" ? "Main Event" : event.type.charAt(0).toUpperCase() + event.type.slice(1)}
+                          </span>
+                        </div>
+                        <p className="text-csh-foreground mb-3 text-csh-magenta">
+                          {event.description}
+                        </p>
+                        <div className="flex items-center gap-2 text-sm text-csh-magenta font-semibold">
+                          <MapPin className="w-4 h-4" />
+                          {event.location}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </button>
                 </div>
               ))}
 
             </div>
           </div>
         </div>  
+
+        {openEvent && (
+          <EventPopup
+            time={openEvent.time}
+            title={openEvent.title}
+            description={openEvent.description}
+            location={openEvent.location}
+            type={openEvent.type}
+            onClose={() => setOpenEvent(null)}
+          />
+        )}
+
       </section>
 
       {/* Remove this portion
