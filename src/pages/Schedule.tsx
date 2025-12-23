@@ -20,14 +20,14 @@ const scheduleData: Record<Day, ScheduleEvent[]> = {
       time: "2:00 PM - 6:00 PM",
       title: "Registration & Check-in",
       description: "Pick up your badge, swag bag, and event materials.",
-      location: "CSH Floor, NRH", // PLACEHOLDER: Confirm location
+      location: "CSH Floor, DSP", // PLACEHOLDER: Confirm location
       type: "activity",
     },
     {
       time: "4:00 PM - 6:00 PM",
       title: "CSH Floor Tours",
       description: "See how CSH has evolved over the years with guided tours of the floor.",
-      location: "CSH Floor, NRH", // PLACEHOLDER: Confirm location
+      location: "CSH Floor, DSP", // PLACEHOLDER: Confirm location
       type: "activity",
     },
     {
@@ -64,7 +64,7 @@ const scheduleData: Record<Day, ScheduleEvent[]> = {
       time: "10:00 AM - 4:00 PM",
       title: "Open House",
       description: "Drop by CSH throughout the day for demos, projects, and socializing.",
-      location: "CSH Floor, NRH", // PLACEHOLDER: Confirm location
+      location: "CSH Floor, DSP", // PLACEHOLDER: Confirm location
       type: "activity",
     },
     {
@@ -101,7 +101,7 @@ const scheduleData: Record<Day, ScheduleEvent[]> = {
       time: "11:00 AM - 1:00 PM",
       title: "Final Goodbyes",
       description: "Wrap up the weekend, grab your things, and head out.",
-      location: "CSH Floor, NRH", // PLACEHOLDER: Confirm location
+      location: "CSH Floor, DSP", // PLACEHOLDER: Confirm location
       type: "social",
     },
   ],
@@ -125,6 +125,15 @@ const Schedule = () => {
 
   return (
     <Layout>
+      {/* Notice Banner */}
+      <div className="bg-amber-500/20 border-2 border-amber-500/50 py-4 px-4">
+        <div className="container mx-auto text-center">
+          <p className="text-amber-400 font-bold text-sm md:text-base tracking-wider">
+            ⚠️ This website is a work in progress. Some contents (including the schedule) are just a placeholder and are subject to change. Some links, including the RSVP and ticket links, do not work.
+          </p>
+        </div>
+      </div>
+
       {/* Header */}
       <section className="pt-12 pb-8">
         <div className="container mx-auto px-4">
