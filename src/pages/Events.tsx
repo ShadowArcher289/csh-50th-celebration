@@ -35,7 +35,7 @@ const events = [
     description: "Take a trip down memory lane or see what CSH looks like today. Guided tours will show you the projects, equipment, and spaces that make CSH special.",
     date: "Friday & Saturday",
     time: "Various times",
-    location: "CSH Floor, NRH", // PLACEHOLDER: Confirm building
+    location: "CSH Floor, DSP",
     address: "Rochester Institute of Technology",
     capacity: "Multiple sessions",
     dressCode: "Casual",
@@ -47,7 +47,7 @@ const events = [
     description: "Hear from successful CSH alumni about their career journeys, how CSH shaped them, and their advice for current members. Q&A session included.",
     date: "Saturday, April 11, 2026",
     time: "2:00 PM - 4:00 PM",
-    location: "TBD", // PLACEHOLDER: Confirm location
+    location: "TBD",
     address: "Rochester Institute of Technology",
     capacity: "200 seats",
     dressCode: "Smart Casual",

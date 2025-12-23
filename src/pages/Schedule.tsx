@@ -20,14 +20,14 @@ const scheduleData: Record<Day, ScheduleEvent[]> = {
       time: "2:00 PM - 6:00 PM",
       title: "Registration & Check-in",
       description: "Pick up your badge, swag bag, and event materials.",
-      location: "CSH Floor, NRH", // PLACEHOLDER: Confirm location
+      location: "CSH Floor, DSP", // PLACEHOLDER: Confirm location
       type: "activity",
     },
     {
       time: "4:00 PM - 6:00 PM",
       title: "CSH Floor Tours",
       description: "See how CSH has evolved over the years with guided tours of the floor.",
-      location: "CSH Floor, NRH", // PLACEHOLDER: Confirm location
+      location: "CSH Floor, DSP", // PLACEHOLDER: Confirm location
       type: "activity",
     },
     {
@@ -64,7 +64,7 @@ const scheduleData: Record<Day, ScheduleEvent[]> = {
       time: "10:00 AM - 4:00 PM",
       title: "Open House",
       description: "Drop by CSH throughout the day for demos, projects, and socializing.",
-      location: "CSH Floor, NRH", // PLACEHOLDER: Confirm location
+      location: "CSH Floor, DSP", // PLACEHOLDER: Confirm location
       type: "activity",
     },
     {
@@ -101,7 +101,7 @@ const scheduleData: Record<Day, ScheduleEvent[]> = {
       time: "11:00 AM - 1:00 PM",
       title: "Final Goodbyes",
       description: "Wrap up the weekend, grab your things, and head out.",
-      location: "CSH Floor, NRH", // PLACEHOLDER: Confirm location
+      location: "CSH Floor, DSP", // PLACEHOLDER: Confirm location
       type: "social",
     },
   ],
