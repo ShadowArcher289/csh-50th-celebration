@@ -2,6 +2,7 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Clock, Users, Sparkles, ArrowRight, Ticket } from "lucide-react";
 import { Link } from "react-router-dom";
+// import { events } from "./EventsData";
 
 // PLACEHOLDER: Update all event details as they are finalized
 const events = [
