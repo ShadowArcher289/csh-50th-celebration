@@ -431,8 +431,10 @@ const Schedule = () => {
               {/* Display events on the right of timeline */}
               {scheduleData[selectedDay].map((event, index) => (
                 incrementSectionCountBy(durationToRowSpan(event.time)), // increment the section count to have how many events are on the page
-                <div
+                <button
                   key={index}
+                  onClick={() => {openEventPopup(event)}}
+
                   className={cn(
                     "col-start-2 col-span-1 row-span-1 overflow-y-auto flex flex-wrap border-4 border-csh-magenta p-6 rounded-2xl transition-all duration-300 hover:scale-[1.02] bg-pink-300",
                     event.type === "main" && "border-8 border-primary/100 glow-csh"
@@ -443,38 +445,33 @@ const Schedule = () => {
                     gridColumnStart: nextColumn(),
                   }}
                 >
-                  <button
-                    onClick={() => {openEventPopup(event)}}
-                    className="flex flex-row items-start gap-4"
-                  >
-                    {/* Content */}
-                    <div className="flex-1">
-                      {/* Time */}
-                      <div className="flex items-center gap-2 text-csh-magenta font-semibold py-2">
-                        <Clock className="w-4 h-4" />
-                        {event.time}
-                      </div>
-                      <div className="flex flex-wrap items-center gap-3 mb-2">
-                        <h3 className="text-xl font-display font-semibold">
-                          {event.title}
-                        </h3>
-                        <span className={cn(
-                          "px-3 py-1 rounded-full text-xs font-medium border",
-                          typeColors[event.type]
-                        )}>
-                          {event.type === "main" ? "Main Event" : event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-                        </span>
-                      </div>
-                      <p className="text-csh-foreground mb-3 text-csh-magenta">
-                        {event.description}
-                      </p>
-                      <div className="flex items-center gap-2 text-sm text-csh-magenta font-semibold">
-                        <MapPin className="w-4 h-4" />
-                        {event.location}
-                      </div>
+                  {/* Content */}
+                  <div className="flex-1">
+                    {/* Time */}
+                    <div className="flex items-center gap-2 text-csh-magenta font-semibold py-2">
+                      <Clock className="w-4 h-4" />
+                      {event.time}
                     </div>
-                  </button>
-                </div>
+                    <div className="flex flex-wrap items-center gap-3 mb-2">
+                      <h3 className="text-xl font-display font-semibold">
+                        {event.title}
+                      </h3>
+                      <span className={cn(
+                        "px-3 py-1 rounded-full text-xs font-medium border",
+                        typeColors[event.type]
+                      )}>
+                        {event.type === "main" ? "Main Event" : event.type.charAt(0).toUpperCase() + event.type.slice(1)}
+                      </span>
+                    </div>
+                    <p className="text-csh-foreground mb-3 text-csh-magenta">
+                      {event.description}
+                    </p>
+                    <div className="flex items-center gap-2 text-sm text-csh-magenta font-semibold">
+                      <MapPin className="w-4 h-4" />
+                      {event.location}
+                    </div>
+                  </div>
+                </button>
               ))}
 
             </div>
