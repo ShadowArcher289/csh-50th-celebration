@@ -35,7 +35,7 @@ const events = [
     description: "Take a trip down memory lane or see what CSH looks like today. Guided tours will show you the projects, equipment, and spaces that make CSH special.",
     date: "Friday & Saturday",
     time: "Various times",
-    location: "CSH Floor, NRH", // PLACEHOLDER: Confirm building
+    location: "CSH Floor, DSP",
     address: "Rochester Institute of Technology",
     capacity: "Multiple sessions",
     dressCode: "Casual",
@@ -47,7 +47,7 @@ const events = [
     description: "Hear from successful CSH alumni about their career journeys, how CSH shaped them, and their advice for current members. Q&A session included.",
     date: "Saturday, April 11, 2026",
     time: "2:00 PM - 4:00 PM",
-    location: "TBD", // PLACEHOLDER: Confirm location
+    location: "TBD",
     address: "Rochester Institute of Technology",
     capacity: "200 seats",
     dressCode: "Smart Casual",
@@ -95,6 +95,15 @@ const events = [
 const Events = () => {
   return (
     <Layout>
+      {/* Notice Banner */}
+      <div className="bg-amber-500/20 border-2 border-amber-500/50 py-4 px-4">
+        <div className="container mx-auto text-center">
+          <p className="text-amber-400 font-bold text-sm md:text-base tracking-wider">
+            ⚠️ This website is a work in progress. Some contents (including the schedule) are just a placeholder and are subject to change. Some links, including the RSVP and ticket links, do not work.
+          </p>
+        </div>
+      </div>
+
       {/* Header */}
       <section className="pt-12 pb-8">
         <div className="container mx-auto px-4">
